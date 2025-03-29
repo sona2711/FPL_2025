@@ -1,11 +1,12 @@
 //task 1
 function fizzBuzz(){
     let result= "";
+    let resultArr = [];
     for(let i = 1 ; i<= 100; i++){
-        result = ((i % 3 == 0 && i % 5 == 0 ) && "FizzBuzz")||(i % 3 == 0 && "Fizz") || (i % 5 == 0 && "buzz");
-        console.log(`${i} - ${result}`)
+        result = ((i % 3 == 0 && i % 5 == 0 ) && "FizzBuzz")||(i % 3 == 0 && "Fizz") || (i % 5 == 0 && "buzz")|| i;
+        resultArr.push(result);
     }
-    return result;
+    return resultArr;
 }
 console.log(fizzBuzz());
 
@@ -15,13 +16,13 @@ function fizzBuzzObj(){
         "0-3": "Fizz",
         "2-0": "Buzz",
     };
-      
+    let resultArr = [];
     for(let i = 1 ; i<= 100; i++){
         const key = `${i % 3}-${i % 5}`;
         let result  = fizzBuzzMap[key] || i;
-        console.log(result);
+        resultArr.push(result);
     }
-    return  
+    return  resultArr;
 }
  
 
@@ -43,15 +44,28 @@ console.log(isPalindrom("Mom"));
 
 //task3
 function drawCalendar(year, month){
-    if(!year && !month)return;
+    if(!year && !month)return "Enter valid numbers!!";
 
-    const receivedDate = new Date(year,month-1);
-    return receivedDate.toDateString();
-    // const dateYear = receivedDate.getFullYear();
-    // const dateMonth = receivedDate.getMonth();
+    const receivedDate = new Date(year,month-1,1);
+    const monthsList = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    const dateYear = receivedDate.getFullYear();
+    const dateMonth = receivedDate.getMonth();
+
+
+    const wrapper = document.querySelector(".wrapper");
+
+    const calendarWrapper = document.createElement("div");
+    calendarWrapper.className = "calendar_wrapper";
+
+    const yearMonth = document.createElement("h2");
+    yearMonth.textContent = `Year:${dateYear}\n Month:${monthsList[dateMonth]}`;
+
+    calendarWrapper.appendChild(yearMonth);
+    wrapper.appendChild(calendarWrapper);
     
-    // return `Year: ${dateYear}\nMonth: ${dateMonth}`
-}
+    return "Calendar is ready."
+};
+
 
 console.log(drawCalendar(2011,12));
 
@@ -67,7 +81,7 @@ function isDeepEqual(obj_one, obj_two, func){
     const valuesOfObj_one = func(obj_one);
     const valuesOfObj_two = func(obj_two);
   
-    return valuesOfObj_one == valuesOfObj_two
+    return valuesOfObj_one == valuesOfObj_two;
 }
 const a = { prop1: 1, list: [1, 2, 3], o: { x: 2 } };
 const b = { list: [1, 2, 3], o: { x: 2 } };
@@ -127,8 +141,7 @@ console.log(spiral([
 //task 6
 function quadraticEquation(a,b,c){
     if(a == 0) { 
-        console.log("Invalid");
-        return;   
+        return "There is no solution";
     }
 
     let rootsArr = [];
@@ -144,6 +157,6 @@ function quadraticEquation(a,b,c){
     }else{ return rootsArr}
   
 }
-console.log(quadraticEquation(1, -8, 72)); // x^2 - 8*x + 72 -> []
+console.log(quadraticEquation(2, -8, 72)); // x^2 - 8*x + 72 -> []
 console.log(quadraticEquation(1, 12, 36)); // x^2 + 12*x + 36 -> [-6]
 console.log(quadraticEquation(1, 6, 1)); // 1*x^2 + 6*x + 1 -> [-0.1715728752538097,-5.82842712474619]
