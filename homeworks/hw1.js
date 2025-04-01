@@ -44,30 +44,42 @@ console.log(isPalindrom("Mom"));
 
 //task3
 function drawCalendar(year, month){
-    if(!year && !month)return "Enter valid numbers!!";
+    // if((year < 1970) && (month > 12)) return "Enter invalid numbers!!";
 
-    const receivedDate = new Date(year,month-1,1);
-    const monthsList = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    const receivedDate = new Date(year,month,0);
     const dateYear = receivedDate.getFullYear();
     const dateMonth = receivedDate.getMonth();
+    const daysInMonth = receivedDate.getDate();
 
+    const monthsList = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
     const wrapper = document.querySelector(".wrapper");
-
     const calendarWrapper = document.createElement("div");
-    calendarWrapper.className = "calendar_wrapper";
-
     const yearMonth = document.createElement("h2");
-    yearMonth.textContent = `Year:${dateYear}\n Month:${monthsList[dateMonth]}`;
+    const daysWrapper = document.createElement("div");
+    
+    calendarWrapper.className = "calendar_wrapper d-flex-center";
+    daysWrapper.className = "days_wrapper";
+
+    yearMonth.textContent = `${monthsList[dateMonth]}  ${year}`;
+    
+    for(let i = 1; i <= daysInMonth; i++){
+        const day = document.createElement("div");
+        day.textContent = i;
+        day.setAttribute("data_id", i)
+        day.className = "day d-flex-center";
+        daysWrapper.appendChild(day);
+    }
 
     calendarWrapper.appendChild(yearMonth);
+    calendarWrapper.appendChild(daysWrapper);
     wrapper.appendChild(calendarWrapper);
     
     return "Calendar is ready."
 };
 
 
-console.log(drawCalendar(2011,12));
+console.log(drawCalendar(2025,3));
 
 //task 4
 function readValues(obj){

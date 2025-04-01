@@ -41,7 +41,10 @@ const calc = (a, b) => {
     let result = 0;
     return function(symbol){
         if(!a && !b) return "Incorect numbers!!";
-        result =  symbol === "+"? a+b: symbol === "-" ? a-b: symbol === "*" ? a * b :symbol === "/" && a > 0 ? a/b: "incorect symbol";
+        result =  symbol === "+"? a+b: 
+        symbol === "-" ? a-b: 
+        symbol === "*" ? a * b :
+        symbol === "/" && a > 0 ? a/b: "incorect symbol";
     
         return result;
     }
@@ -52,18 +55,30 @@ console.log(calc(1,2)('/')) ; // 0.5
 
 
 //task 4
-// function sum2(x, y) { // 2 parameters
-//     return x + y;
-// }
-// function sum4(a, b, c, d) { // 4 parameters
-//     return a + b + c + d;
-// }
+function sum2(x, y) { // 2 parameters
+    return x + y;
+}
+function sum4(a, b, c, d) { // 4 parameters
+    return a + b + c + d;
+}
 
-// function curry(fn){
-//     return fn
-// }
-// console.log(curry(sum2)(1)(2)); // 2 calls, after first wrapping call, returns 3
-// console.log(curry(sum4)(2)(3)(4)(5)); // 4 calls, after first wrapping call, returns 14
+function curry(fn){
+    if(typeof fn !== "function" || fn.length === 0) return "Wrong parametr!!Try again";
+    let count = [];
+
+    function getAllArgs(param) {
+        count.push(param);
+        if(count.length < fn.length){
+            return getAllArgs;
+        }
+        return fn.call(this, ...count);
+    }
+    return getAllArgs;
+}
+
+
+console.log(curry(sum2)(1)(2)); // 2 calls, after first wrapping call, returns 3
+console.log(curry(sum4)(2)(3)(4)(5)); // 4 calls, after first wrapping call, returns 14
 
 
 
