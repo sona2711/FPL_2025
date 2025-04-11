@@ -44,7 +44,7 @@ console.log(isPalindrom("Mom"));
 
 //task3
 function drawCalendar(year, month){
-    // if((year < 1970) && (month > 12)) return "Enter invalid numbers!!";
+    if((year < 1970) && (month > 12)) return "Enter invalid numbers!!";
 
     const receivedDate = new Date(year,month,0);
     const dateYear = receivedDate.getFullYear();
@@ -61,7 +61,7 @@ function drawCalendar(year, month){
     calendarWrapper.className = "calendar_wrapper d-flex-center";
     daysWrapper.className = "days_wrapper";
 
-    yearMonth.textContent = `${monthsList[dateMonth]}  ${year}`;
+    yearMonth.textContent = `${monthsList[dateMonth]}  ${dateYear}`;
     
     for(let i = 1; i <= daysInMonth; i++){
         const day = document.createElement("div");
