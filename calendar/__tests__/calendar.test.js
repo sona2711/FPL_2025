@@ -1,5 +1,5 @@
-const {JSDOM} = require('jsdom');
-const { getPrevDates,getNextDates,getCurrentDates} = require("../calendar.js");
+import  {JSDOM} from 'jsdom';
+import  { getPrevDates,getNextDates,getCurrentDates} from "../scripts/utils";
 
 
 describe("getPrevDates", ()=>{
