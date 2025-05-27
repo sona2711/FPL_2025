@@ -17,6 +17,7 @@ export class NoteManager {
     open(){
         this.dayList.forEach((day) => {
             day.addEventListener("click", (event)=>{
+                
                 day.classList.toggle("active");     
                 this.elem.style.display = "flex";
                 this.#id = event.target.attributes.data_id.value;
